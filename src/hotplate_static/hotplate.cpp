@@ -1,4 +1,3 @@
-#include "include\hotplate\hotplate.h"
 #include <hotplate/hotplate.h>
 
 namespace hotplate
