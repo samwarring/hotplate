@@ -16,6 +16,3 @@ before_build:
 
 build:
   project: $(APPVEYOR_BUILD_FOLDER)\build\$(APPVEYOR_PROJECT_NAME).sln
-
-test_script:
-  - $(APPVEYOR_BUILD_FOLDER)\$(CONFIGURATION)\hotplate_app.exe
