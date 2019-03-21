@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 project(hotplate)
+enable_testing()
 
 # Static library
 add_library(hotplate_static STATIC 
@@ -16,3 +17,8 @@ add_executable(hotplate_app
 	src/hotplate_app/main.cpp)
 target_link_libraries(hotplate_app
 	PRIVATE hotplate_static)
+
+# Tests
+add_test(
+	NAME hotplate_app
+	COMMAND "${CURRENT_BUILD_DIR}/hotplate_app")
