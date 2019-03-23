@@ -15,9 +15,9 @@ env:
 matrix:
   exclude:
     - os: linux
-	  compiler: clang
-	- os: osx
-	  compiler: gcc
+      compiler: clang
+    - os: osx
+      compiler: gcc
 
 before_script:
   - mkdir build
