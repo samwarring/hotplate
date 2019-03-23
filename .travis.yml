@@ -1,20 +1,28 @@
 language: cpp
 
+os:
+  - linux
+  - osx
+
+compiler:
+  - gcc
+  - clang
+
 env:
-  - BUILD_CONFIG=Debug
-  - BUILD_CONFIG=RelWithDebInfo
+  - CONFIG=Debug
+  - CONFIG=RelWithDebInfo
 
 matrix:
-  include:
+  exclude:
     - os: linux
-      compiler: gcc
-    - os: osx
-      compiler: clang
+	  compiler: clang
+	- os: osx
+	  compiler: gcc
 
 before_script:
   - mkdir build
   - cd build
-  - cmake .. -DCMAKE_BUILD_TYPE=$BUILD_CONFIG
+  - cmake .. -DCMAKE_BUILD_TYPE=$CONFIG
 
 script:
   - cmake --build .
