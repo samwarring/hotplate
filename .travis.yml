@@ -19,6 +19,11 @@ matrix:
     - os: osx
       compiler: gcc
 
+addons:
+  apt:
+    packages:
+      - libboost-all-dev
+	  
 before_script:
   - mkdir build
   - cd build
