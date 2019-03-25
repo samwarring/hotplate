@@ -2,7 +2,7 @@
 #include <boost/test/unit_test.hpp>
 #include <hotplate/hotplate.h>
 
-BOOST_AUTO_TEST_SUITE()
+BOOST_AUTO_TEST_SUITE(hotplate_test_suite)
 
 BOOST_AUTO_TEST_CASE(hotplate_test_1)
 {
