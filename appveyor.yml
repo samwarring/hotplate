@@ -1,6 +1,6 @@
 version: '0.0.0.{build}'
 
-image: Visual Studio 2017
+image: Visual Studio 2015
 
 platform:
   - x64
@@ -12,7 +12,7 @@ configuration:
 before_build:
   - mkdir build
   - cd build
-  - cmake -G "Visual Studio 15 2017 Win64" -DBOOST_ROOT=C:\Libraries\boost_1_69_0 ..
+  - cmake -G "Visual Studio 14 2015 Win64" -DBOOST_ROOT=C:\Libraries\boost_1_69_0 ..
 
 build:
   project: $(APPVEYOR_BUILD_FOLDER)\build\$(APPVEYOR_PROJECT_NAME).sln
