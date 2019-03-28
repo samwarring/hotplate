@@ -32,7 +32,9 @@ target_link_libraries(hotplate_app
 
 # Boost unit test binary
 add_executable(hotplate_boost_test
-	src/hotplate_boost_test/hotplate_boost_test.cpp)
+	src/hotplate_boost_test/main.cpp
+	src/hotplate_boost_test/hotplate_boost_test.cpp
+	src/hotplate_boost_test/substance_boost_test.cpp)
 target_link_libraries(hotplate_boost_test
 	PRIVATE hotplate_static
 	        Boost::unit_test_framework)
