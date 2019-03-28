@@ -18,4 +18,5 @@ build:
   project: $(APPVEYOR_BUILD_FOLDER)\build\$(APPVEYOR_PROJECT_NAME).sln
 
 test_script:
+  - set "PATH=%PATH%;C:/Libraries/boost_1_67_0/lib64-msvc-14.0"
   - ctest -C %CONFIGURATION% --verbose
