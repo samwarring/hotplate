@@ -18,5 +18,4 @@ build:
   project: $(APPVEYOR_BUILD_FOLDER)\build\$(APPVEYOR_PROJECT_NAME).sln
 
 test_script:
-  - dumpbin /imports %CONFIGURATION%\hotplate_boost_test.exe
   - ctest -C %CONFIGURATION% --verbose
