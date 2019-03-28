@@ -18,7 +18,5 @@ build:
   project: $(APPVEYOR_BUILD_FOLDER)\build\$(APPVEYOR_PROJECT_NAME).sln
 
 test_script:
-  - dir /s C:/Libraries/boost_1_69_0/lib64-msvc-14.0
-  - dir /s %CONFIGURATION%
   - dumpbin /imports %CONFIGURATION%\hotplate_boost_test.exe
   - ctest -C %CONFIGURATION% --verbose
