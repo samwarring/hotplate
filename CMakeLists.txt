@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.0)
 project(hotplate)
 enable_testing()
 
+# Cache variables
+set(Boost_USE_STATIC_LIBS OFF CACHE BOOL "Statically link to Boost libraries")
+
 # Dependencies
 find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 
@@ -33,9 +36,11 @@ add_executable(hotplate_boost_test
 target_link_libraries(hotplate_boost_test
 	PRIVATE hotplate_static
 	        Boost::unit_test_framework)
-target_compile_definitions(hotplate_boost_test
-	PRIVATE BOOST_TEST_DYN_LINK=1)
-
+if(NOT ${Boost_USE_STATIC_LIBS})
+	target_compile_definitions(hotplate_boost_test
+		PRIVATE BOOST_TEST_DYN_LINK=1)
+endif()
+		
 # Tests
 add_test(
 	NAME hotplate_app
