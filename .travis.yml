@@ -11,8 +11,10 @@ compiler:
   - clang
 
 env:
-  - CONFIG=Debug
-  - CONFIG=RelWithDebInfo
+  - ARCH=x86 CONFIG=Debug
+  - ARCH=x64 CONFIG=Debug
+  - ARCH=x86 CONFIG=RelWithDebInfo
+  - ARCH=x64 CONFIG=RelWithDebInfo
 
 matrix:
   exclude:
@@ -20,11 +22,17 @@ matrix:
       compiler: clang
     - os: osx
       compiler: gcc
+    - os: osx
+      env: ARCH=x86 CONFIG=Debug
+    - os: osx
+      env: ARCH=x86 CONFIG=RelWithDebInfo
 
 addons:
   apt:
     packages:
+      - g++-multilib
       - libboost-all-dev
+      - "libboost-all-dev:i386"
 
 before_script:
   - mkdir build
