@@ -27,17 +27,8 @@ matrix:
     - os: osx
       env: ARCH=x86 CONFIG=RelWithDebInfo
 
-addons:
-  apt:
-    packages:
-      - g++-multilib
-      - libboost-all-dev
-      - "libboost-all-dev:i386"
-
 before_script:
-  - mkdir build
-  - cd build
-  - cmake .. -DCMAKE_BUILD_TYPE=$CONFIG
+  - scripts/travis_before_script.sh
 
 script:
   - cmake --build .
