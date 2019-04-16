@@ -1,4 +1,6 @@
 #!/bin/bash
+set -x
+set -e
 
 # Create build directory
 mkdir build
@@ -15,6 +17,7 @@ if [ $IS_LINUX = 0 ] && [ $ARCH = x86 ]; then
     cmake .. -DCMAKE_BUILD_TYPE=$CONFIG -DCMAKE_TOOLCHAIN_FILE=../cmake/toolchain_x86_linux_on_x64_linux.cmake
 elif [ $IS_LINUX = 0 ] && [ $ARCH = x64 ]; then
     echo Setting up native x64 Linux compilation environment...
+    sudo apt update
     sudo apt install -y libboost-all-dev
     cmake .. -DCMAKE_BUILD_TYPE=$CONFIG
 else
