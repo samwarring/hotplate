@@ -11,10 +11,8 @@ compiler:
   - clang
 
 env:
-  - ARCH=x86 CONFIG=Debug
-  - ARCH=x64 CONFIG=Debug
-  - ARCH=x86 CONFIG=RelWithDebInfo
-  - ARCH=x64 CONFIG=RelWithDebInfo
+  - CONFIG=Debug
+  - CONFIG=RelWithDebInfo
 
 matrix:
   exclude:
@@ -22,13 +20,16 @@ matrix:
       compiler: clang
     - os: osx
       compiler: gcc
-    - os: osx
-      env: ARCH=x86 CONFIG=Debug
-    - os: osx
-      env: ARCH=x86 CONFIG=RelWithDebInfo
+
+addons:
+  apt:
+    packages:
+      - libboost-all-dev
 
 before_script:
-  - scripts/travis_before_script.sh
+  - mkdir build
+  - cd build
+  - cmake .. -DCMAKE_BUILD_TYPE=$CONFIG
 
 script:
   - cmake --build .
