@@ -1,9 +1,23 @@
-cmake_minimum_required(VERSION 3.0)
-project(hotplate)
+cmake_minimum_required(VERSION 3.11)
+
+# Read version from cache
+set(hotplate_VERSION 0.0.0 CACHE STRING "Hotplate version (ex: 1.2.3)")
+
+project(hotplate VERSION ${hotplate_VERSION})
 enable_testing()
 
 # Cache variables
+set(hotplate_COMMIT 0 CACHE STRING "Git commit hash for this build of hotplate")
 set(Boost_USE_STATIC_LIBS OFF CACHE BOOL "Statically link to Boost libraries")
+
+# Write build version information to a header file, and create
+# an interface target for it to be used by other targets.
+configure_file(
+	src/build_info/include/hotplate/build_info.in.h
+	src/build_info/include/hotplate/build_info.h)
+add_library(build_info INTERFACE)
+target_include_directories(build_info
+	INTERFACE ${PROJECT_BINARY_DIR}/src/build_info/include)
 
 # Dependencies
 find_package(Boost REQUIRED COMPONENTS unit_test_framework)
@@ -34,9 +48,11 @@ target_link_libraries(hotplate_app
 add_executable(hotplate_boost_test
 	src/hotplate_boost_test/main.cpp
 	src/hotplate_boost_test/hotplate_boost_test.cpp
-	src/hotplate_boost_test/substance_boost_test.cpp)
+	src/hotplate_boost_test/substance_boost_test.cpp
+	src/hotplate_boost_test/build_info_boost_test.cpp)
 target_link_libraries(hotplate_boost_test
-	PRIVATE hotplate_static
+	PRIVATE build_info
+	        hotplate_static
 	        Boost::unit_test_framework)
 if(NOT ${Boost_USE_STATIC_LIBS})
 	target_compile_definitions(hotplate_boost_test
