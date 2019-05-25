@@ -30,6 +30,9 @@ addons:
     packages:
       - libboost-all-dev
       - g++-7
+  homebrew:
+    packages:
+      - gcc6
 
 before_script:
   - scripts/configure_travis.sh .
