@@ -33,7 +33,7 @@ addons:
   homebrew:
     packages:
       - gcc6
-	  - gcc7
+      - gcc7
 
 before_script:
   - scripts/configure_travis.sh .
