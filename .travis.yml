@@ -29,6 +29,7 @@ addons:
   apt:
     packages:
       - libboost-all-dev
+      - g++-7
 
 before_script:
   - scripts/configure_travis.sh .
