@@ -62,7 +62,7 @@ auto main(int argc, char** argv) -> int
 	}
 
 	if (opt_vars.count("version")) {
-		std::cout << "hotplate version " << hotplate::build_info::VERSION << '\n';
+		std::cout << "hotplate version: " << hotplate::build_info::SEMVER << '\n';
 		return 0;
 	}
 
@@ -74,8 +74,7 @@ auto main(int argc, char** argv) -> int
 	int final_temp = start_temp + 400;
 	for (int temp = start_temp; temp <= final_temp; temp += 50) {
 		hp.set_temperature(temp);
-		std::cout
-			<< "Hotplate temperature " << temp << ". "
-			<< "Water is " << water.get_state() << ".\n";
+		std::cout << "Hotplate temperature " << temp << ". "
+		          << "Water is " << water.get_state() << ".\n";
 	}
 }

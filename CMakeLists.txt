@@ -7,7 +7,9 @@ project(hotplate VERSION ${hotplate_VERSION})
 enable_testing()
 
 # Cache variables
-set(hotplate_COMMIT 0 CACHE STRING "Git commit hash for this build of hotplate")
+set(hotplate_COMMIT "0" CACHE STRING "Git commit hash for this build of hotplate")
+set(hotplate_CI_SERVICE "local" CACHE STRING "Name of CI service that created this build (local, travis, appveyor)")
+set(hotplate_CI_BUILD_NUMBER "0" CACHE STRING "Build number assigned by the CI service")
 set(Boost_USE_STATIC_LIBS OFF CACHE BOOL "Statically link to Boost libraries")
 
 # Write build version information to a header file, and create

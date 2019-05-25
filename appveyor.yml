@@ -12,7 +12,7 @@ configuration:
 before_build:
   - mkdir build
   - cd build
-  - cmake -G "Visual Studio 14 2015 Win64" -DBOOST_ROOT=C:\Libraries\boost_1_69_0 .. -Dhotplate_VERSION=0.1.0 -Dhotplate_COMMIT=%APPVEYOR_REPO_COMMIT%
+  - cmake -G "Visual Studio 14 2015 Win64" -DBOOST_ROOT=C:\Libraries\boost_1_69_0 .. -Dhotplate_VERSION=0.1.0 -Dhotplate_COMMIT=%APPVEYOR_REPO_COMMIT% -Dhotplate_CI_SERVICE=appveyor -Dhotplate_CI_BUILD_NUMBER=%APPVEYOR_BUILD_NUMBER%
 
 build:
   project: $(APPVEYOR_BUILD_FOLDER)\build\$(APPVEYOR_PROJECT_NAME).sln
