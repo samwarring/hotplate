@@ -2,7 +2,7 @@ language: cpp
 
 cache:
   directories:
-    - build/vcpkg
+    - vcpkg
 
 os:
   - linux
@@ -31,9 +31,7 @@ addons:
       - libboost-all-dev
 
 before_script:
-  - mkdir -p build
-  - cd build
-  - ../scripts/configure_travis.sh ..
+  - scripts/configure_travis.sh .
 
 script:
   - cmake --build .
