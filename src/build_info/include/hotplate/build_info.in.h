@@ -12,7 +12,7 @@ namespace hotplate
 		constexpr const char * COMMIT = "@hotplate_COMMIT@";
 		constexpr const char * CI_SERVICE = "@hotplate_CI_SERVICE@";
 		constexpr const char * CI_BUILD_NUMBER = "@hotplate_CI_BUILD_NUMBER@";
-		constexpr const char * SEMVER = "@PROJECT_VERSION@+@hotplate_CI_SERVICE@#@hotplate_CI_BUILD_NUMBER@-@hotplate_COMMIT@";
+		constexpr const char * SEMVER = "@hotplate_SEMVER@";
 	}
 }
 

@@ -12,6 +12,10 @@ set(hotplate_CI_SERVICE "local" CACHE STRING "Name of CI service that created th
 set(hotplate_CI_BUILD_NUMBER "0" CACHE STRING "Build number assigned by the CI service")
 set(Boost_USE_STATIC_LIBS OFF CACHE BOOL "Statically link to Boost libraries")
 
+# Create a full version string and print it
+set(hotplate_SEMVER "${PROJECT_VERSION}+${hotplate_CI_SERVICE}#${hotplate_CI_BUILD_NUMBER}-${hotplate_COMMIT}")
+message(STATUS "${PROJECT_NAME} version: ${hotplate_SEMVER}")
+
 # Write build version information to a header file, and create
 # an interface target for it to be used by other targets.
 configure_file(
@@ -27,10 +31,14 @@ find_package(Boost REQUIRED
 	           program_options)
 
 # Print variables showing which dependencies were selected
+message(STATUS "Boost static link: ${Boost_USE_STATIC_LIBS}")
 message(STATUS "Boost includes: ${Boost_INCLUDE_DIRS}")
-message(STATUS "Boost libs: ${Boost_LIBRARY_DIRS}")
-message(STATUS "Boost libs (debug): ${Boost_LIBRARY_DIR_DEBUG}")
-message(STATUS "Boost libs (release): ${Boost_LIBRARY_DIR_RELEASE}")
+if(CMAKE_CONFIGURATION_TYPES)
+	message(STATUS "Boost libs (debug): ${Boost_LIBRARY_DIR_DEBUG}")
+	message(STATUS "Boost libs (release): ${Boost_LIBRARY_DIR_RELEASE}")
+else()
+	message(STATUS "Boost libs: ${Boost_LIBRARY_DIRS}")
+endif()
 
 # Static library
 add_library(hotplate_static STATIC 
