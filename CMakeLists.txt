@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.5)
 
 # Read version from cache
 set(hotplate_VERSION 0.0.0 CACHE STRING "Hotplate version (ex: 1.2.3)")
@@ -26,7 +26,7 @@ target_include_directories(build_info
 	INTERFACE ${PROJECT_BINARY_DIR}/src/build_info/include)
 
 # Dependencies
-find_package(Boost REQUIRED
+find_package(Boost 1.59 REQUIRED
 	COMPONENTS unit_test_framework
 	           program_options)
 
