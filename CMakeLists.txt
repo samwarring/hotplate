@@ -20,7 +20,9 @@ target_include_directories(build_info
 	INTERFACE ${PROJECT_BINARY_DIR}/src/build_info/include)
 
 # Dependencies
-find_package(Boost REQUIRED COMPONENTS unit_test_framework)
+find_package(Boost REQUIRED
+	COMPONENTS unit_test_framework
+	           program_options)
 
 # Print variables showing which dependencies were selected
 message(STATUS "Boost includes: ${Boost_INCLUDE_DIRS}")
@@ -42,7 +44,9 @@ target_compile_features(hotplate_static
 add_executable(hotplate_app
 	src/hotplate_app/main.cpp)
 target_link_libraries(hotplate_app
-	PRIVATE hotplate_static)
+	PRIVATE hotplate_static
+	        Boost::program_options
+	        build_info)
 
 # Boost unit test binary
 add_executable(hotplate_boost_test
@@ -58,7 +62,7 @@ if(NOT ${Boost_USE_STATIC_LIBS})
 	target_compile_definitions(hotplate_boost_test
 		PRIVATE BOOST_TEST_DYN_LINK=1)
 endif()
-		
+
 # Tests
 add_test(
 	NAME hotplate_app
