@@ -7,7 +7,7 @@ if [ ! -f vcpkg/vcpkg ]; then
     # Vcpkg is not cached. Let's install it :)
     git clone https://github.com/microsoft/vcpkg.git
     cd vcpkg
-    ./bootstrap-vcpkg.sh
+    ./bootstrap-vcpkg.sh --allowAppleClang
 else
     echo "Vcpkg already installed"
     cd vcpkg
