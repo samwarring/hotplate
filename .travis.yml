@@ -2,7 +2,7 @@ language: cpp
 
 cache:
   directories:
-    - vcpkg
+    - travis-cache
 
 os:
   - linux
@@ -28,12 +28,7 @@ matrix:
 addons:
   apt:
     packages:
-      - libboost-all-dev
-      - g++-7
-  homebrew:
-    packages:
-      - gcc6
-      - gcc7
+      - pv
 
 before_script:
   - scripts/configure_travis.sh .
