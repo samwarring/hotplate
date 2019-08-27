@@ -5,6 +5,7 @@ set(hotplate_VERSION 0.0.0 CACHE STRING "Hotplate version (ex: 1.2.3)")
 
 project(hotplate VERSION ${hotplate_VERSION})
 enable_testing()
+include(GNUInstallDirs)
 
 # Cache variables
 set(hotplate_COMMIT "0" CACHE STRING "Git commit hash for this build of hotplate")
