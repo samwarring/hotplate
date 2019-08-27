@@ -5,7 +5,6 @@ set(hotplate_VERSION 0.0.0 CACHE STRING "Hotplate version (ex: 1.2.3)")
 
 project(hotplate VERSION ${hotplate_VERSION})
 enable_testing()
-include(GNUInstallDirs)
 
 # Cache variables
 set(hotplate_COMMIT "0" CACHE STRING "Git commit hash for this build of hotplate")
@@ -50,10 +49,6 @@ target_include_directories(hotplate_static
 target_compile_features(hotplate_static
 	PUBLIC cxx_strong_enums
 	       cxx_noexcept)
-install(TARGETS hotplate_static)
-install(DIRECTORY src/hotplate_static/include
-        DESTINATION .
-        FILES_MATCHING PATTERN "*.h")
 
 # Executable app
 add_executable(hotplate_app
@@ -62,7 +57,6 @@ target_link_libraries(hotplate_app
 	PRIVATE hotplate_static
 	        Boost::program_options
 	        build_info)
-install(TARGETS hotplate_app)
 
 # Boost unit test binary
 add_executable(hotplate_boost_test
@@ -86,3 +80,13 @@ add_test(
 add_test(
 	NAME hotplate_boost_test
 	COMMAND "${CURRENT_BUILD_DIR}/hotplate_boost_test")
+
+# Installation steps
+include(GNUInstallDirs)
+install(TARGETS hotplate_static hotplate_app
+	RUNTIME DESTINATION bin
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib)
+install(DIRECTORY src/hotplate_static/include
+	DESTINATION .
+	FILES_MATCHING PATTERN "*.h")
