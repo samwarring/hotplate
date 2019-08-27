@@ -49,6 +49,10 @@ target_include_directories(hotplate_static
 target_compile_features(hotplate_static
 	PUBLIC cxx_strong_enums
 	       cxx_noexcept)
+install(TARGETS hotplate_static)
+install(DIRECTORY src/hotplate_static/include
+        DESTINATION .
+        FILES_MATCHING PATTERN "*.h")
 
 # Executable app
 add_executable(hotplate_app
@@ -57,6 +61,7 @@ target_link_libraries(hotplate_app
 	PRIVATE hotplate_static
 	        Boost::program_options
 	        build_info)
+install(TARGETS hotplate_app)
 
 # Boost unit test binary
 add_executable(hotplate_boost_test
