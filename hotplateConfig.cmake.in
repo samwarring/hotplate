@@ -6,4 +6,6 @@ set(hotplate_VERSION "@hotplate_VERSION@")
 set_and_check(hotplate_INCLUDE_DIR "@PACKAGE_hotplate_INSTALLDIR_INCLUDE@")
 set_and_check(hotplate_LIBRARY_DIR "@PACKAGE_hotplate_INSTALLDIR_LIB@")
 
+include(hotplateTargets)
+
 check_required_components(hotplate)

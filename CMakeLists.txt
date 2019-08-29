@@ -45,7 +45,8 @@ add_library(hotplate_static STATIC
 	src/hotplate_static/hotplate.cpp
 	src/hotplate_static/include/hotplate/hotplate.h)
 target_include_directories(hotplate_static
-	PUBLIC src/hotplate_static/include)
+	PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src/hotplate_static/include>
+	       $<INSTALL_INTERFACE:include>)
 target_compile_features(hotplate_static
 	PUBLIC cxx_strong_enums
 	       cxx_noexcept)
@@ -99,6 +100,7 @@ write_basic_package_version_file(
 # Installation steps
 include(GNUInstallDirs)
 install(TARGETS hotplate_static hotplate_app
+	EXPORT hotplate_targets
 	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib)
@@ -109,3 +111,15 @@ install(FILES
 	${CMAKE_CURRENT_BINARY_DIR}/hotplateConfig.cmake
 	${CMAKE_CURRENT_BINARY_DIR}/hotplateConfigVersion.cmake
 	DESTINATION "lib/cmake/hotplate")
+
+# Install a path-agnostic hotplateTargets.cmake file.
+install(EXPORT hotplate_targets
+	DESTINATION lib/cmake/hotplate
+	NAMESPACE hotplate::
+	FILE hotplateTargets.cmake)
+
+# Generate a local hotplateTargets.cmake file with paths to the current build.
+export(
+	EXPORT hotplate_targets
+	NAMESPACE hotplate::
+	FILE hotplateTargets.cmake)
