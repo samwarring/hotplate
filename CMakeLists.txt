@@ -108,13 +108,15 @@ install(DIRECTORY src/hotplate_static/include/hotplate
 	DESTINATION include
 	FILES_MATCHING PATTERN "*.h")
 install(FILES
-	${CMAKE_CURRENT_BINARY_DIR}/hotplateConfig.cmake
-	${CMAKE_CURRENT_BINARY_DIR}/hotplateConfigVersion.cmake
-	DESTINATION "lib/cmake/hotplate")
+	"${CMAKE_CURRENT_BINARY_DIR}/hotplateConfig.cmake"
+	"${CMAKE_CURRENT_BINARY_DIR}/hotplateConfigVersion.cmake"
+	"${CMAKE_CURRENT_LIST_DIR}/LICENSE"
+	"${CMAKE_CURRENT_LIST_DIR}/README.md"
+	DESTINATION share/hotplate)
 
 # Install a path-agnostic hotplateTargets.cmake file.
 install(EXPORT hotplate_targets
-	DESTINATION lib/cmake/hotplate
+	DESTINATION share/hotplate
 	NAMESPACE hotplate::
 	FILE hotplateTargets.cmake)
 
