@@ -108,7 +108,6 @@ fi
 
 echo "Configuring Hotplate with CMake"
 cmake $1 -DCMAKE_BUILD_TYPE=$CONFIG\
-         -Dhotplate_VERSION=0.1.0\
          -Dhotplate_COMMIT=$TRAVIS_COMMIT\
          -Dhotplate_CI_SERVICE=travis\
          -Dhotplate_CI_BUILD_NUMBER=$TRAVIS_BUILD_NUMBER\
