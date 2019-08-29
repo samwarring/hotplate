@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 # Read version from cache
-set(hotplate_VERSION 0.0.0 CACHE STRING "Hotplate version (ex: 1.2.3)")
+set(hotplate_VERSION 0.1.1 CACHE STRING "Hotplate version (ex: 1.2.3)")
 
 project(hotplate VERSION ${hotplate_VERSION})
 enable_testing()
@@ -81,12 +81,31 @@ add_test(
 	NAME hotplate_boost_test
 	COMMAND "${CURRENT_BUILD_DIR}/hotplate_boost_test")
 
+# CMake package configuration files
+include(CMakePackageConfigHelpers)
+set(hotplate_INSTALLDIR_INCLUDE include/)
+set(hotplate_INSTALLDIR_LIB lib/)
+configure_package_config_file(
+	hotplateConfig.cmake.in
+	${CMAKE_CURRENT_BINARY_DIR}/hotplateConfig.cmake
+	PATH_VARS hotplate_INSTALLDIR_INCLUDE
+	          hotplate_INSTALLDIR_LIB
+	INSTALL_DESTINATION lib/hotplate/cmake)
+write_basic_package_version_file(
+	${CMAKE_CURRENT_BINARY_DIR}/hotplateConfigVersion.cmake
+	VERSION ${hotplate_VERSION}
+	COMPATIBILITY SameMajorVersion)
+
 # Installation steps
 include(GNUInstallDirs)
 install(TARGETS hotplate_static hotplate_app
 	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib)
-install(DIRECTORY src/hotplate_static/include
-	DESTINATION .
+install(DIRECTORY src/hotplate_static/include/hotplate
+	DESTINATION include
 	FILES_MATCHING PATTERN "*.h")
+install(FILES
+	${CMAKE_CURRENT_BINARY_DIR}/hotplateConfig.cmake
+	${CMAKE_CURRENT_BINARY_DIR}/hotplateConfigVersion.cmake
+	DESTINATION "lib/cmake/hotplate")

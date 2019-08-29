@@ -1,0 +1,9 @@
+# See https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html#module:CMakePackageConfigHelpers
+set(hotplate_VERSION "@hotplate_VERSION@")
+
+@PACKAGE_INIT@
+
+set_and_check(hotplate_INCLUDE_DIR "@PACKAGE_hotplate_INSTALLDIR_INCLUDE@")
+set_and_check(hotplate_LIBRARY_DIR "@PACKAGE_hotplate_INSTALLDIR_LIB@")
+
+check_required_components(hotplate)
