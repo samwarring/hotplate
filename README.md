@@ -3,4 +3,4 @@
 [![Documentation Status](https://readthedocs.org/projects/hotplate/badge/?version=latest)](http://hotplate.readthedocs.io/?badge=latest)
 
 # hotplate
-Boilerplate code for portable, automated, and documented C++ projects. You can find the full documentation on ReadTheDocs [here]( http://hotplate.readthedocs.io/latest)
+Boilerplate code for portable, automated, and documented C++ projects. You can find the full documentation on ReadTheDocs [here]( http://hotplate.readthedocs.io/en/latest)
