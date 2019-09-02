@@ -40,16 +40,8 @@ else()
 	message(STATUS "Boost libs: ${Boost_LIBRARY_DIRS}")
 endif()
 
-# Static library
-add_library(hotplate_static STATIC 
-	src/hotplate_static/hotplate.cpp
-	include/hotplate/hotplate.h)
-target_include_directories(hotplate_static
-	PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
-	       $<INSTALL_INTERFACE:include>)
-target_compile_features(hotplate_static
-	PUBLIC cxx_strong_enums
-	       cxx_noexcept)
+# Add targets from the src directory
+add_subdirectory(src)
 
 # Executable app
 add_executable(hotplate_app
@@ -104,7 +96,7 @@ install(TARGETS hotplate_static hotplate_app
 	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib)
-install(DIRECTORY src/hotplate_static/include/hotplate
+install(DIRECTORY include/hotplate
 	DESTINATION include
 	FILES_MATCHING PATTERN "*.h")
 install(FILES
