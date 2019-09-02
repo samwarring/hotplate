@@ -1,1 +1,2 @@
 add_subdirectory(hotplate_static)
+add_subdirectory(hotplate_app)

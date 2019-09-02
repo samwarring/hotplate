@@ -43,14 +43,6 @@ endif()
 # Add targets from the src directory
 add_subdirectory(src)
 
-# Executable app
-add_executable(hotplate_app
-	src/hotplate_app/main.cpp)
-target_link_libraries(hotplate_app
-	PRIVATE hotplate_static
-	        Boost::program_options
-	        build_info)
-
 # Boost unit test binary
 add_executable(hotplate_boost_test
 	src/hotplate_boost_test/main.cpp
