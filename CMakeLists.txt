@@ -21,16 +21,6 @@ find_package(Boost 1.59 REQUIRED
 	COMPONENTS unit_test_framework
 	           program_options)
 
-# Print variables showing which dependencies were selected
-message(STATUS "Boost static link: ${Boost_USE_STATIC_LIBS}")
-message(STATUS "Boost includes: ${Boost_INCLUDE_DIRS}")
-if(CMAKE_CONFIGURATION_TYPES)
-	message(STATUS "Boost libs (debug): ${Boost_LIBRARY_DIR_DEBUG}")
-	message(STATUS "Boost libs (release): ${Boost_LIBRARY_DIR_RELEASE}")
-else()
-	message(STATUS "Boost libs: ${Boost_LIBRARY_DIRS}")
-endif()
-
 # Add targets from the src directory
 add_subdirectory(src)
 
