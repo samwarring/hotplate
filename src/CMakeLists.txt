@@ -1,2 +1,3 @@
 add_subdirectory(hotplate_static)
 add_subdirectory(hotplate_app)
+add_subdirectory(hotplate_boost_test)

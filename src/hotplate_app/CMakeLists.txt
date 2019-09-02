@@ -9,3 +9,8 @@ target_link_libraries(
             Boost::program_options
             build_info
 )
+
+add_test(
+    NAME hotplate_app
+    COMMAND ${CMAKE_CURRENT_BINARY_DIR}/hotplate_app
+)
