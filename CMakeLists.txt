@@ -43,9 +43,9 @@ endif()
 # Static library
 add_library(hotplate_static STATIC 
 	src/hotplate_static/hotplate.cpp
-	src/hotplate_static/include/hotplate/hotplate.h)
+	include/hotplate/hotplate.h)
 target_include_directories(hotplate_static
-	PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src/hotplate_static/include>
+	PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
 	       $<INSTALL_INTERFACE:include>)
 target_compile_features(hotplate_static
 	PUBLIC cxx_strong_enums
