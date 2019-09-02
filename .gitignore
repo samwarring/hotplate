@@ -16,3 +16,8 @@ CMakeSettings.json
 docs/html/
 docs/latex/
 docs/xml/
+docs/_build/
+docs/_static/
+docs/_templates/
+docs/make*
+docs/Make*
