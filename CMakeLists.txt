@@ -16,15 +16,6 @@ set(Boost_USE_STATIC_LIBS OFF CACHE BOOL "Statically link to Boost libraries")
 set(hotplate_SEMVER "${PROJECT_VERSION}+${hotplate_CI_SERVICE}#${hotplate_CI_BUILD_NUMBER}-${hotplate_COMMIT}")
 message(STATUS "${PROJECT_NAME} version: ${hotplate_SEMVER}")
 
-# Write build version information to a header file, and create
-# an interface target for it to be used by other targets.
-configure_file(
-	src/build_info/include/hotplate/build_info.in.h
-	src/build_info/include/hotplate/build_info.h)
-add_library(build_info INTERFACE)
-target_include_directories(build_info
-	INTERFACE ${PROJECT_BINARY_DIR}/src/build_info/include)
-
 # Dependencies
 find_package(Boost 1.59 REQUIRED
 	COMPONENTS unit_test_framework
