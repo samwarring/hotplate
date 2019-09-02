@@ -5,20 +5,38 @@
 \section introduction Introduction
 
 \par
-Hotplate is a library of **boilerplate** code for portable, automated, and documented C++ projects.
-While the **contents** of the library exist purely for demonstration, Hotplate's intended value lies
-in it's **configuration**. It's aims to demonstrate the integration of various **free** services for
-automating the common operations for open-source C++ projects including building, testing, documenting,
-and releasing.
+Hotplate is a library of boilerplate code for portable, automated, and documented C++ projects.
+While the *contents* of the library exist purely for demonstration, Hotplate's intended value lies
+in it's *configuration*. It aims to demonstrate the integration of *free* and *well-established* 
+tools/services for automating the common operations of open-source C++ projects - operations
+such as building, testing, documenting, and releasing.
+
+\section services_tools Services and Tools
 
 \par
-As of this writing, Hotplate supports the following services/operations:
+As of this writing, Hotplate supports the following services:
 -# **GitHub** for centrally hosting the source code
 -# **TravisCI** for automating builds on Linux and Mac
 -# **AppVeyor** for automating builds on Windows
+-# **ReadTheDocs** for hosting the generated documentation
 
 \par
 Hotplate also makes use of these free sofware tools for organizing the project
 -# **CMake** to manage build environments
 -# **Doxygen** to manage documentation
+-# **Boost** for useful C++ utilites (unit-test, string algorithms, command line parsing)
+
+\todo Document the CMake build system
+
+\todo Document the Traivs/AppVeyor CI systems
+
+\todo Document the documentation system. Heh.
+
+\section project_links Project Links
+- GitHub page: https://github.com/samwarring/hotplate
+- ReadTheDocs documentation: https://hotplate.readthedocs.io/en/latest/
+- ReadTheDocs configuration: https://readthedocs.org/projects/hotplate
+- TravisCI project: https://travis-ci.org/samwarring/hotplate
+- AppVeyor project: https://ci.appveyor.com/project/samwarring/hotplate/branch/master
+
 */
