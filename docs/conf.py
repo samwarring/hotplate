@@ -54,5 +54,11 @@ html_static_path = ['_static']
 # When loading this conf.py module, run doxygen on this folder.
 # This will produce an 'html' folder with the generated Doxygen output.
 import subprocess
+import os
+
+print('Running Doxygen ------------------------------------------------------')
+print('  Current directory: ' + os.getcwd())
 subprocess.check_call('doxygen')
+print('Finished Doxygen -----------------------------------------------------')
+
 html_extra_path = ['html']
