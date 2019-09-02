@@ -1,0 +1,24 @@
+/*!
+
+\mainpage  Welcome to the Hotplate documentation!
+
+\section introduction Introduction
+
+\par
+Hotplate is a library of **boilerplate** code for portable, automated, and documented C++ projects.
+While the **contents** of the library exist purely for demonstration, Hotplate's intended value lies
+in it's **configuration**. It's aims to demonstrate the integration of various **free** services for
+automating the common operations for open-source C++ projects including building, testing, documenting,
+and releasing.
+
+\par
+As of this writing, Hotplate supports the following services/operations:
+-# **GitHub** for centrally hosting the source code
+-# **TravisCI** for automating builds on Linux and Mac
+-# **AppVeyor** for automating builds on Windows
+
+\par
+Hotplate also makes use of these free sofware tools for organizing the project
+-# **CMake** to manage build environments
+-# **Doxygen** to manage documentation
+*/

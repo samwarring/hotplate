@@ -13,3 +13,6 @@ CTestTestfile.cmake
 .vs/*
 .vscode/
 CMakeSettings.json
+docs/html/
+docs/latex/
+docs/xml/
