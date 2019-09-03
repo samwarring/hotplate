@@ -32,6 +32,7 @@ addons:
   homebrew:
     packages:
       - pv
+    update: true
 
 before_script:
   - scripts/configure_travis.sh .
