@@ -8,9 +8,10 @@ mkdir -p travis-cache
 mkdir -p travis-cache/stamp
 
 install_cmake() {
+	OS_ARCH=$1
 	CMAKE_VERSION=3.14.4
-	CMAKE_TARBALL=cmake-$CMAKE_VERSION-Linux-x86_64.tar.gz
-	CMAKE_SRC_DIR=cmake-$CMAKE_VERSION-Linux-x86_64
+	CMAKE_TARBALL=cmake-$CMAKE_VERSION-$OS_ARCH.tar.gz
+	CMAKE_SRC_DIR=cmake-$CMAKE_VERSION-$OS_ARCH
 	CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/$CMAKE_TARBALL"
 	STAMP_PREFIX=travis-cache/stamp/cmake-$CMAKE_VERSION
 
@@ -88,7 +89,7 @@ if [ "$TRAVIS_OS_NAME" = "osx" ]; then
 	echo "Configuring for OSX in Travis-CI"
 
 	# Install CMake from source, because the version provided by travis is too old.
-	install_cmake
+	install_cmake "Darwin-x86_64"
 
 elif [ "$TRAVIS_OS_NAME" = "linux" ]; then
 	
@@ -99,7 +100,7 @@ elif [ "$TRAVIS_OS_NAME" = "linux" ]; then
 	install_boost
 
 	# Install CMake from source, because the version provided by travis is too old.
-	install_cmake
+	install_cmake "Linux-x86_64"
 
 else
 	
