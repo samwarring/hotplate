@@ -34,9 +34,6 @@ install_cmake() {
 	else
 		echo "CMake $CMAKE_VERSION already extracted"
 	fi
-
-	# Add this CMake to the path
-	export PATH=`pwd`/travis-cache/$CMAKE_SRC_DIR/bin:$PATH
 }
 
 install_boost() {
@@ -90,6 +87,7 @@ if [ "$TRAVIS_OS_NAME" = "osx" ]; then
 
 	# Install CMake from source, because the version provided by travis is too old.
 	install_cmake "Darwin-x86_64"
+	export PATH=`pwd`/travis-cache/$CMAKE_SRC_DIR/CMake.app/Contents/bin:$PATH
 
 elif [ "$TRAVIS_OS_NAME" = "linux" ]; then
 	
@@ -101,6 +99,7 @@ elif [ "$TRAVIS_OS_NAME" = "linux" ]; then
 
 	# Install CMake from source, because the version provided by travis is too old.
 	install_cmake "Linux-x86_64"
+	export PATH=`pwd`/travis-cache/$CMAKE_SRC_DIR/bin:$PATH
 
 else
 	
