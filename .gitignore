@@ -21,3 +21,5 @@ docs/_static/
 docs/_templates/
 docs/make*
 docs/Make*
+html/
+latex/
