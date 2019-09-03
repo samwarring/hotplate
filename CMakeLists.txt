@@ -1,7 +1,24 @@
-cmake_minimum_required(VERSION 3.5)
+# CMake Version reference.
+# This provides rationale for the cmake_minimum_required version.
+#
+# 3.11.3 : Travis Mac images
+# 3.12.4 : Travis Xenial images
+# 3.13.0 : Supports Boost1.68, 1.69.
+#          The install(TARGETS) command learned to install targets created outside the current directory.
+# 3.14.0 : Supports Boost 1.70
+# 3.14.4 : Installed by configure_travis.sh
+# 3.15.1 : AppVeyor Windows images (VS2015+)
+#
+# Reference : https://stackoverflow.com/a/42124857
+#             https://stackoverflow.com/a/34444949
+#             https://cmake.org/cmake/help/v3.13/release/3.13.html
+#             https://www.appveyor.com/docs/windows-images-software/#tools
+#             https://docs.travis-ci.com/user/reference/osx#compilers-and-build-toolchain
+#             https://docs.travis-ci.com/user/reference/xenial/#compilers-and-build-toolchain
+cmake_minimum_required(VERSION 3.14)
 
 # Read version from cache
-set(hotplate_VERSION 0.1.1 CACHE STRING "Hotplate version (ex: 1.2.3)")
+set(hotplate_VERSION 0.1.4 CACHE STRING "Hotplate version (ex: 1.2.3)")
 
 project(hotplate VERSION ${hotplate_VERSION})
 enable_testing()
@@ -16,71 +33,13 @@ set(Boost_USE_STATIC_LIBS OFF CACHE BOOL "Statically link to Boost libraries")
 set(hotplate_SEMVER "${PROJECT_VERSION}+${hotplate_CI_SERVICE}#${hotplate_CI_BUILD_NUMBER}-${hotplate_COMMIT}")
 message(STATUS "${PROJECT_NAME} version: ${hotplate_SEMVER}")
 
-# Write build version information to a header file, and create
-# an interface target for it to be used by other targets.
-configure_file(
-	src/build_info/include/hotplate/build_info.in.h
-	src/build_info/include/hotplate/build_info.h)
-add_library(build_info INTERFACE)
-target_include_directories(build_info
-	INTERFACE ${PROJECT_BINARY_DIR}/src/build_info/include)
-
 # Dependencies
 find_package(Boost 1.59 REQUIRED
 	COMPONENTS unit_test_framework
 	           program_options)
 
-# Print variables showing which dependencies were selected
-message(STATUS "Boost static link: ${Boost_USE_STATIC_LIBS}")
-message(STATUS "Boost includes: ${Boost_INCLUDE_DIRS}")
-if(CMAKE_CONFIGURATION_TYPES)
-	message(STATUS "Boost libs (debug): ${Boost_LIBRARY_DIR_DEBUG}")
-	message(STATUS "Boost libs (release): ${Boost_LIBRARY_DIR_RELEASE}")
-else()
-	message(STATUS "Boost libs: ${Boost_LIBRARY_DIRS}")
-endif()
-
-# Static library
-add_library(hotplate_static STATIC 
-	src/hotplate_static/hotplate.cpp
-	src/hotplate_static/include/hotplate/hotplate.h)
-target_include_directories(hotplate_static
-	PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src/hotplate_static/include>
-	       $<INSTALL_INTERFACE:include>)
-target_compile_features(hotplate_static
-	PUBLIC cxx_strong_enums
-	       cxx_noexcept)
-
-# Executable app
-add_executable(hotplate_app
-	src/hotplate_app/main.cpp)
-target_link_libraries(hotplate_app
-	PRIVATE hotplate_static
-	        Boost::program_options
-	        build_info)
-
-# Boost unit test binary
-add_executable(hotplate_boost_test
-	src/hotplate_boost_test/main.cpp
-	src/hotplate_boost_test/hotplate_boost_test.cpp
-	src/hotplate_boost_test/substance_boost_test.cpp
-	src/hotplate_boost_test/build_info_boost_test.cpp)
-target_link_libraries(hotplate_boost_test
-	PRIVATE build_info
-	        hotplate_static
-	        Boost::unit_test_framework)
-if(NOT ${Boost_USE_STATIC_LIBS})
-	target_compile_definitions(hotplate_boost_test
-		PRIVATE BOOST_TEST_DYN_LINK=1)
-endif()
-
-# Tests
-add_test(
-	NAME hotplate_app
-	COMMAND "${CURRENT_BUILD_DIR}/hotplate_app")
-add_test(
-	NAME hotplate_boost_test
-	COMMAND "${CURRENT_BUILD_DIR}/hotplate_boost_test")
+# Add targets from the src directory
+add_subdirectory(src)
 
 # CMake package configuration files
 include(CMakePackageConfigHelpers)
@@ -104,7 +63,7 @@ install(TARGETS hotplate_static hotplate_app
 	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib)
-install(DIRECTORY src/hotplate_static/include/hotplate
+install(DIRECTORY include/hotplate
 	DESTINATION include
 	FILES_MATCHING PATTERN "*.h")
 install(FILES

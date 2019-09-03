@@ -8,9 +8,10 @@ mkdir -p travis-cache
 mkdir -p travis-cache/stamp
 
 install_cmake() {
+	OS_ARCH=$1
 	CMAKE_VERSION=3.14.4
-	CMAKE_TARBALL=cmake-$CMAKE_VERSION-Linux-x86_64.tar.gz
-	CMAKE_SRC_DIR=cmake-$CMAKE_VERSION-Linux-x86_64
+	CMAKE_TARBALL=cmake-$CMAKE_VERSION-$OS_ARCH.tar.gz
+	CMAKE_SRC_DIR=cmake-$CMAKE_VERSION-$OS_ARCH
 	CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/$CMAKE_TARBALL"
 	STAMP_PREFIX=travis-cache/stamp/cmake-$CMAKE_VERSION
 
@@ -33,9 +34,6 @@ install_cmake() {
 	else
 		echo "CMake $CMAKE_VERSION already extracted"
 	fi
-
-	# Add this CMake to the path
-	export PATH=`pwd`/travis-cache/$CMAKE_SRC_DIR/bin:$PATH
 }
 
 install_boost() {
@@ -87,17 +85,21 @@ if [ "$TRAVIS_OS_NAME" = "osx" ]; then
 	
 	echo "Configuring for OSX in Travis-CI"
 
+	# Install CMake from source, because the version provided by travis is too old.
+	install_cmake "Darwin-x86_64"
+	export PATH=`pwd`/travis-cache/$CMAKE_SRC_DIR/CMake.app/Contents/bin:$PATH
+
 elif [ "$TRAVIS_OS_NAME" = "linux" ]; then
 	
 	echo "Configuring for Linux in Travis-CI"
 
-	# We need to install Boost from source, because the image provided by
-	# travis (Ubuntu 16.04) only has boost 1.58 (we require 1.59).
+	# Install Boost from source, because the image provided by travis (Ubuntu 16.04)
+	# only has boost 1.58 (we require 1.59).
 	install_boost
 
-	# We need to install CMake from source, because the version provided
-	# by travis (3.5) is too old to provide imported targets from FindBoost.
-	install_cmake
+	# Install CMake from source, because the version provided by travis is too old.
+	install_cmake "Linux-x86_64"
+	export PATH=`pwd`/travis-cache/$CMAKE_SRC_DIR/bin:$PATH
 
 else
 	
