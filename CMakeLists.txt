@@ -1,5 +1,21 @@
-# >= 3.13 : The install(TARGETS) command learned to install targets created outside the current directory.
-cmake_minimum_required(VERSION 3.13)
+# CMake Version reference.
+# This provides rationale for the cmake_minimum_required version.
+#
+# 3.11.3 : Travis Mac images
+# 3.12.4 : Travis Xenial images
+# 3.13.0 : Supports Boost1.68, 1.69.
+#          The install(TARGETS) command learned to install targets created outside the current directory.
+# 3.14.0 : Supports Boost 1.70
+# 3.14.4 : Installed by configure_travis.sh
+# 3.15.1 : AppVeyor Windows images (VS2015+)
+#
+# Reference : https://stackoverflow.com/a/42124857
+#             https://stackoverflow.com/a/34444949
+#             https://cmake.org/cmake/help/v3.13/release/3.13.html
+#             https://www.appveyor.com/docs/windows-images-software/#tools
+#             https://docs.travis-ci.com/user/reference/osx#compilers-and-build-toolchain
+#             https://docs.travis-ci.com/user/reference/xenial/#compilers-and-build-toolchain
+cmake_minimum_required(VERSION 3.14)
 
 # Read version from cache
 set(hotplate_VERSION 0.1.4 CACHE STRING "Hotplate version (ex: 1.2.3)")

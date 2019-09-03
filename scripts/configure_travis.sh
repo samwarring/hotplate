@@ -87,16 +87,18 @@ if [ "$TRAVIS_OS_NAME" = "osx" ]; then
 	
 	echo "Configuring for OSX in Travis-CI"
 
+	# Install CMake from source, because the version provided by travis is too old.
+	install_cmake
+
 elif [ "$TRAVIS_OS_NAME" = "linux" ]; then
 	
 	echo "Configuring for Linux in Travis-CI"
 
-	# We need to install Boost from source, because the image provided by
-	# travis (Ubuntu 16.04) only has boost 1.58 (we require 1.59).
+	# Install Boost from source, because the image provided by travis (Ubuntu 16.04)
+	# only has boost 1.58 (we require 1.59).
 	install_boost
 
-	# We need to install CMake from source, because the version provided
-	# by travis (3.5) is too old to provide imported targets from FindBoost.
+	# Install CMake from source, because the version provided by travis is too old.
 	install_cmake
 
 else
