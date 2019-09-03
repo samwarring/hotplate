@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 # Read version from cache
-set(hotplate_VERSION 0.1.1 CACHE STRING "Hotplate version (ex: 1.2.3)")
+set(hotplate_VERSION 0.1.4 CACHE STRING "Hotplate version (ex: 1.2.3)")
 
 project(hotplate VERSION ${hotplate_VERSION})
 enable_testing()
