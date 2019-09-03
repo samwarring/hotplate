@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.5)
+# >= 3.13 : The install(TARGETS) command learned to install targets created outside the current directory.
+cmake_minimum_required(VERSION 3.13)
 
 # Read version from cache
 set(hotplate_VERSION 0.1.4 CACHE STRING "Hotplate version (ex: 1.2.3)")
