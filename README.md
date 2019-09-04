@@ -3,4 +3,4 @@
 [![Documentation](https://codedocs.xyz/samwarring/hotplate.svg)](https://codedocs.xyz/samwarring/hotplate/)
 
 # hotplate
-Boilerplate code for portable, automated, and documented C++ projects. You can find the full documentation on CodeDocs [here](https://codedocs.xyz/samwarring/hotplate)
+Boilerplate code for portable, automated, and documented C++ projects

@@ -15,7 +15,7 @@
 #             https://www.appveyor.com/docs/windows-images-software/#tools
 #             https://docs.travis-ci.com/user/reference/osx#compilers-and-build-toolchain
 #             https://docs.travis-ci.com/user/reference/xenial/#compilers-and-build-toolchain
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.13)
 
 # Read version from cache
 set(hotplate_VERSION 0.1.4 CACHE STRING "Hotplate version (ex: 1.2.3)")

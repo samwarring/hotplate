@@ -1,6 +1,8 @@
-/*!
+/**
 
 \mainpage  Welcome to the Hotplate documentation!
+
+\tableofcontents
 
 \section introduction Introduction
 
@@ -14,28 +16,60 @@ such as building, testing, documenting, and releasing.
 \section services_tools Services and Tools
 
 \par
-As of this writing, Hotplate supports the following services:
--# **GitHub** for centrally hosting the source code
--# **TravisCI** for automating builds on Linux and Mac
--# **AppVeyor** for automating builds on Windows
--# **CodeDocs** for hosting the generated documentation
-
-\par
-Hotplate also makes use of these free sofware tools for organizing the project
--# **CMake** to manage build environments
--# **Doxygen** to manage documentation
--# **Boost** for useful C++ utilites (unit-test, string algorithms, command line parsing)
-
-\todo Document the CMake build system
-
-\todo Document the Traivs/AppVeyor CI systems
-
-\todo Document the documentation system. Heh.
+As of this writing, Hotplate utilizes the following free services and tools:
+-# **Git** tracks file history and commits.
+-# **GitHub** centrally hosts the source code and manages issues.
+-# **CMake** generates native build systems for any platform.
+-# **TravisCI** automates Linux and Mac builds in a reproducable cloud environment.
+-# **AppVeyor** automates Windows builds in a reproducable cloud environment.
+-# **Doxygen** organizes documentation from source code and additional markup pages.
+-# **CodeDocs** hosts the generated documentation in the cloud.
+-# **Boost** provides C++ facilities lacking in the standard library (unit-tests, string algorithms, command line parsing).
 
 \section project_links Project Links
-- GitHub page: https://github.com/samwarring/hotplate
-- CodeDocs page: https://codedocs.xyz/samwarring/hotplate
-- TravisCI project: https://travis-ci.org/samwarring/hotplate
-- AppVeyor project: https://ci.appveyor.com/project/samwarring/hotplate/branch/master
+- [GitHub page](https://github.com/samwarring/hotplate)
+- [CodeDocs page](https://codedocs.xyz/samwarring/hotplate)
+- [TravisCI project](https://travis-ci.org/samwarring/hotplate)
+- [AppVeyor project](https://ci.appveyor.com/project/samwarring/hotplate/branch/master)
+
+\section build-instructions Bulid Instructions
+
+\par
+To build the project, first install these dependent tools and libraries
+-# Git
+-# CMake (>= 3.13.0)
+-# C++ compiler of choice (GCC, Clang, Visual Studio)
+-# Boost (>= 1.59)
+
+\par
+To keep the project as portable and flexible as possible, Hoplate **does not**
+provide any built-in solution for C++ library dependency management. See \ref installing-dependencies
+to decide which method works best for you.
+
+\attention
+If you install Boost 1.70, you must install CMake 3.14 or newer. See [this answer](https://stackoverflow.com/a/42124857)
+on StackOverflow for more information.
+
+\par
+Once all your tools and libraries are installed, clone the Git repository from GitHub.
+
+    ~$ git clone https://github.com/samwarring/hotplate.git
+
+\par
+Create a \c build directory inside the project. Change to this directory.
+
+    ~$ mkdir hotplate/build
+    ~$ cd hotplate/build
+
+\par
+Configure a new build system in the directory.
+
+    ~/hotplate/build$ cmake ..
+    \endverbatim
+
+\par
+Build the project with the generated build system.
+
+    ~/hotplate/build$ cmake --build .
 
 */
