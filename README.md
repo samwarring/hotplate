@@ -4,4 +4,4 @@
 # hotplate
 Boilerplate code for portable, automated, and documented C++ projects
 
-Check out the documentation [here](https://samwarring.github.io/hotplate-docs/hotplate)
+Check out the documentation [here](https://samwarring.github.io/hotplate-docs)

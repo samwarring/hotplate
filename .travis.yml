@@ -42,7 +42,7 @@ script:
   - ctest
 
 after_success:
-  - travis_after_success.sh .
+  - scripts/travis_after_success.sh
 
 deploy:
   provider: pages
