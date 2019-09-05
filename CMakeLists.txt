@@ -70,7 +70,7 @@ write_basic_package_version_file(
 
 # Installation steps
 include(GNUInstallDirs)
-install(TARGETS hotplate_static hotplate_app
+install(TARGETS hotplate_lib hotplate_app
 	EXPORT hotplate_targets
 	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib

@@ -5,7 +5,7 @@ add_executable(
 
 target_link_libraries(
     hotplate_app
-    PRIVATE hotplate_static
+    PRIVATE hotplate_lib
             Boost::program_options
             build_info
 )

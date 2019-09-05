@@ -9,7 +9,7 @@ add_executable(
 target_link_libraries(
     hotplate_boost_test
     PRIVATE build_info
-            hotplate_static
+            hotplate_lib
             Boost::unit_test_framework
 )
 
