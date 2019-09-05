@@ -29,6 +29,7 @@ addons:
   apt:
     packages:
       - pv
+      - doxygen
   homebrew:
     packages:
       - pv
