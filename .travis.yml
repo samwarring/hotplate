@@ -40,3 +40,18 @@ before_script:
 script:
   - cmake --build .
   - ctest
+
+after_success:
+  - travis_after_success.sh .
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GHPAGES_DOCS_TOKEN
+  keep_history: true
+  local_dir: html
+  repo: samwarring/hotplate-docs
+  target_branch: master
+  on:
+    branch: master
+    condition: $TRAVIS_OS_NAME = linux && $CONFIG = RelWithDebInfo
