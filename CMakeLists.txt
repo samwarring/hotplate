@@ -6,7 +6,7 @@
 # 3.13.0 : Supports Boost1.68, 1.69.
 #          The install(TARGETS) command learned to install targets created outside the current directory.
 # 3.14.0 : Supports Boost 1.70
-# 3.14.4 : Installed by configure_travis.sh
+# 3.14.4 : Installed by travis_before_script.sh
 # 3.15.1 : AppVeyor Windows images (VS2015+)
 #
 # Reference : https://stackoverflow.com/a/42124857
@@ -27,13 +27,25 @@ enable_testing()
 set(hotplate_COMMIT "0" CACHE STRING "Git commit hash for this build of hotplate")
 set(hotplate_CI_SERVICE "local" CACHE STRING "Name of CI service that created this build (local, travis, appveyor)")
 set(hotplate_CI_BUILD_NUMBER "0" CACHE STRING "Build number assigned by the CI service")
-set(Boost_USE_STATIC_LIBS OFF CACHE BOOL "Statically link to Boost libraries")
 
 # Create a full version string and print it
 set(hotplate_SEMVER "${PROJECT_VERSION}+${hotplate_CI_SERVICE}#${hotplate_CI_BUILD_NUMBER}-${hotplate_COMMIT}")
 message(STATUS "${PROJECT_NAME} version: ${hotplate_SEMVER}")
 
-# Dependencies
+# Boost version reference.
+# This provides rationale for the find_package(Boost) version.
+#
+# 1.32 : Added program_options
+# 1.59 : Added BOOST_AUTO_TEST_CASE and BOOST_DATA_TEST_CASE
+# 1.67 : Default on OSX in Travis
+# 1.69 : Default on Windows on AppVeyor (VS2015, VS2017)
+#        Installed by travis_before_script.sh
+#
+# References : https://www.boost.org/users/history/version_1_59_0.html
+#              https://www.boost.org/doc/libs/1_32_0/doc/html/program_options.html
+#              https://www.boost.org/doc/libs/1_59_0/libs/test/doc/html/index.html
+#              https://packages.ubuntu.com/xenial/libboost-all-dev
+#              https://www.appveyor.com/docs/windows-images-software/#boost
 find_package(Boost 1.59 REQUIRED
 	COMPONENTS unit_test_framework
 	           program_options)

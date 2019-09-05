@@ -10,13 +10,10 @@ configuration:
   - Debug
 
 before_build:
-  - mkdir build
-  - cd build
-  - cmake -G "Visual Studio 14 2015 Win64" -DBOOST_ROOT=C:\Libraries\boost_1_69_0 -DBoost_USE_STATIC_LIBS=ON .. -Dhotplate_COMMIT=%APPVEYOR_REPO_COMMIT% -Dhotplate_CI_SERVICE=appveyor -Dhotplate_CI_BUILD_NUMBER=%APPVEYOR_BUILD_NUMBER%
+  - scripts\appveyor_before_build.bat
 
 build:
-  project: $(APPVEYOR_BUILD_FOLDER)\build\$(APPVEYOR_PROJECT_NAME).sln
+  project: $(APPVEYOR_BUILD_FOLDER)\$(APPVEYOR_PROJECT_NAME).sln
 
 test_script:
-  - set "PATH=%PATH%;C:/Libraries/boost_1_69_0/lib64-msvc-14.0"
-  - ctest -C %CONFIGURATION% --verbose
+  - scripts\appveyor_test_script.bat
