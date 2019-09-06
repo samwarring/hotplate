@@ -14,3 +14,9 @@ add_test(
     NAME hotplate_app
     COMMAND ${CMAKE_CURRENT_BINARY_DIR}/hotplate_app
 )
+
+if(BUILD_SHARED_LIBS)
+
+    add_test_path(TEST hotplate_app TARGETS hotplate_lib)
+
+endif()

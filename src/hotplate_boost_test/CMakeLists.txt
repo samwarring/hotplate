@@ -26,3 +26,9 @@ add_test(
     NAME hotplate_boost_test
     COMMAND ${CMAKE_CURRENT_BINARY_DIR}/hotplate_boost_test
 )
+
+if(BUILD_SHARED_LIBS)
+
+    add_test_path(TEST hotplate_boost_test TARGETS hotplate_lib)
+
+endif()

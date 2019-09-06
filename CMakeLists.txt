@@ -32,6 +32,10 @@ set(hotplate_CI_BUILD_NUMBER "0" CACHE STRING "Build number assigned by the CI s
 set(hotplate_SEMVER "${PROJECT_VERSION}+${hotplate_CI_SERVICE}#${hotplate_CI_BUILD_NUMBER}-${hotplate_COMMIT}")
 message(STATUS "${PROJECT_NAME} version: ${hotplate_SEMVER}")
 
+# Load utilities
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+include(HotplateUtils)
+
 # Boost version reference.
 # This provides rationale for the find_package(Boost) version.
 #
